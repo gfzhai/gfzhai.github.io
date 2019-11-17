@@ -175,5 +175,50 @@
 
 * 中断次数变多了，说明 CPU 被中断处理程序占用，还需要通过查看 /proc/interrupts 文件来分析具体的中断类型。
 ```
-    /proc/interrupts
+    cat /proc/interrupts
 ```
+
+## 05 | 基础篇：某个应用的CPU使用率居然达到100%，我该怎么办？
+
+* CPU使用率
+> 除了空闲时间外的其它时间占CPU总时间的百分比
+
+* Linux的内核节拍率
+> 可以查看Linux的节拍率的配置
+```
+    $ grep 'CONFIG_HZ=' /boot/config-$(uname -r)
+    CONFIG_HZ=250
+```
+
+* 用户节拍率USER_HZ
+> 始终为100
+
+* Linux系统的CPU和任务的统计信息
+> 通过命令查看/proc/stat中相关的信息
+```
+    $ cat /proc/stat | grep ^cpu
+    cpu  280580 7407 286084 172900810 83602 0 583 0 0 0
+    cpu0 144745 4181 176701 86423902 52076 0 301 0 0 0
+    cpu1 135834 3226 109383 86476907 31525 0 282 0 0 0
+```
+
+* CPU使用率相关的重要指标
+> 通过man proc命令查看
+```
+    user(us)            用户态CPU时间，不包括nice时间，包括guest时间
+    nice(ni)            低优先级用户态CPU时间，优先级1~19
+    system(sys)         内核态CPU时间
+    idle(id)            空闲时间，不包括等待io的时间
+    iowait(wa)          等待磁盘IO的CPU时间
+    irq(hi)             处理硬中断的CPU时间
+    softirq(si)         处理软中断的CPU时间
+    steal(st)           系统运行在虚拟机中的时候，被其他虚拟机占用的CPU时间
+    guest(guest)        通过虚拟机运行其他操作系统的时间，也就是运行虚拟机的CPU时间
+    guest_nice(gnice)   以低优先级运行虚拟机的时间
+```
+
+* 每个进程的运行情况
+> 通过命令查看/proc/[PID]/stat中的相关信息
+
+* 性能分析工具给出的都是间隔一段时间的平均 CPU 使用率，所以要注意间隔时间的设置
+
