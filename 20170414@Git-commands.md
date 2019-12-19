@@ -3,8 +3,8 @@ _By zhaigf, Jun 2, 2014_
 
 > 常用GIT命令汇总，不断更新中
 
-_* update Apr 8, 2019_
-
+_* update Apr  8, 2019_
+_* update Dec 17, 2019_
 
 #### 1. 如何恢复被误删除的文件？
 
@@ -91,3 +91,28 @@ git checkout master
 ```
 git merge --no-ff develop
 ```
+
+#### 12. 创建远程分支
+
+假设本地当前分支为master, 需要创建的分支是test。
+
+在当前分支下创建test的本地分支
+```
+git checkout -b test
+```
+
+将test分支推到远程，假设远程的仓库为origin
+```
+git push origin test
+```
+
+将本地分支test关联到远程分支test上
+```
+git branch --set-upstream-to=origin/test
+```
+
+查看所有分支
+```
+git branch -a
+```
+
