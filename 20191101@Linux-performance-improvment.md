@@ -480,7 +480,7 @@ $ cat /proc/softirqs
 
 * CPU缓存命中率
 
-![CPU多级缓存](../IMG/2019-12-24_111940.png)
+![CPU多级缓存](https://github.com/gfzhai/gfzhai.github.io/blob/master/IMG/2019-12-24_111940.png)
 
 ### 性能工具
 
