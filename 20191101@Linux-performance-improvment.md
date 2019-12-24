@@ -539,9 +539,16 @@ $ cat /proc/softirqs
 
 * 第一个维度，从CPU的性能指标触发。也就是说，当你要查看某个性能指标时，要清楚知道哪些工具可以做到
 
+![根据指标找工具](https://github.com/gfzhai/gfzhai.github.io/blob/master/IMG/2019-12-24_112926.png)
+
+
 * 第二个维度，从工具出发。也就是当你已经安装了某个工具后，要知道这个工具能提供哪些指标。
+
+![根据工具找指标](https://github.com/gfzhai/gfzhai.github.io/blob/master/IMG/2019-12-24_113030.png)
 
 ### 如何迅速分析CPU的性能瓶颈
 
 * 要弄清除性能指标的关联性，就要通晓每种性能指标的工作原理
 > 为了缩小排查范围，通常会先运行几个支持指标较多的工具 如top、vmstat和pidstat
+
+![多工具联合排查](https://github.com/gfzhai/gfzhai.github.io/blob/master/IMG/2019-12-24_113154.png)
