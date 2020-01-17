@@ -655,3 +655,38 @@ NUMA优化
 ### 问题 5：性能工具（如 vmstat）输出中，第一行数据跟其他行差别巨大
 
 * 在碰到直观上解释不了的现象时，要第一时间去查命令手册。
+
+## 14 | 答疑（二）：如何用perf工具分析Java程序？
+
+### 问题 1： 使用 perf 工具时，看到的是 16 进制地址而不是函数名
+
+* perf找不到待分析进程依赖的库
+> 四个解决方法
+```
+在容器外面构建相同路径的依赖库
+在容器内运行perf
+    需要容器运行在特权模式下
+指定符号路径为容器文件系统的路径
+    bindfs
+在容器外面把分析记录保存下来，再在容器里查看结果
+```
+
+### 问题 2：如何用 perf 工具分析 Java 程序
+
+* perf_events
+
+* 技术博客《Java in Flames》
+> https://medium.com/netflix-techblog/java-in-flames-e763b3d32166
+
+### 问题 3：为什么 perf 的报告中，很多符号都不显示调用栈
+> 还是多学习文档
+
+### 问题 4：怎么理解 perf report 报告
+
+* swapper
+* Children vs Self
+* 动态追踪工具带来性能损失
+
+### 问题 5：性能优化书籍和参考资料推荐
+
+* 《Systems Performance: Enterprise and the Cloud》
